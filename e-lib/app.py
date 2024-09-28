@@ -8,9 +8,9 @@ app = Flask(__name__)
 
 UPLOAD_FOLDER = 'static'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config["SECRET_KEY"] = 'dfsdf'
+app.config["SECRET_KEY"] = 'SECRET_PASSWORD'
 
-db = pymysql.connections.Connection(host='localhost', user='root', password='Vam#090905', db='bookslib')
+db = pymysql.connections.Connection(host='localhost', user='root', password='your_password', db='bookslib')
 
 cursor = db.cursor()
 
@@ -59,7 +59,7 @@ cursor.execute("""
 
 
 mega = Mega()
-mega = mega.login('veeramehta09@gmail.com', 'vam#090905')
+mega = mega.login('your_email_id', 'your_password')
 
 
 @app.route('/', methods=["GET"])											#HOME
