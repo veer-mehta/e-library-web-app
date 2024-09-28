@@ -57,12 +57,15 @@
 <!-- Form Section -->
 <section class="form-section">
     <h2 class="form-title">Upload Your PDF</h2>
-    <form class="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+    <form class="upload-form" action="/upload" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <input type="text" class="form-control" name="title" placeholder="Title of the Resource" required>
+            <input type="text" class="form-control" name="book_name" placeholder="Title of the Resource" required>
         </div>
         <div class="form-group">
             <input type="text" class="form-control" name="author" placeholder="Author's Name" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="genre" placeholder="Genre of the Resource" required>
         </div>
         <div class="form-group">
             <input type="file" class="form-control" name="file" accept="application/pdf" required>

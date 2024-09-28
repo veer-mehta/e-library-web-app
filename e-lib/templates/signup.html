@@ -14,11 +14,11 @@
     <h2>Create Your E-Library Account</h2>
 
     <!-- Signup form -->
-    <form action="#">
-        <input type="text" placeholder="Full Name" required>
-        <input type="email" placeholder="Email" required>
-        <input type="password" placeholder="Password" required>
-        <input type="password" placeholder="Confirm Password" required>
+    <form action="{{ url_for('signup') }}" method="post">
+        <input type="text" name="username" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="password" placeholder="Confirm Password" required>
         <button type="submit">Sign Up</button>
 
         <!-- Already have an account? link -->
