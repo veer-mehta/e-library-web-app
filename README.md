@@ -1,8 +1,8 @@
 Requires:
-  Python <= 3.10\n
-  MySQL Client\n
-  `pip install flask mega.py pymysql`\n
+  Python <= 3.10
+  MySQL Client
+  `pip install flask mega.py pymysql`
 
-To run:\n
-  Go inside the e-lib folder then,\n
+To run:
+  Go inside the e-lib folder then,
   `flask run`
