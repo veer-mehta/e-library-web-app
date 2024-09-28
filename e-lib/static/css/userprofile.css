@@ -1,0 +1,104 @@
+body {
+    background-color: #FFF0D1; /* Background color */
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Profile container */
+.profile-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Profile photo */
+.profile-container img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+/* User details */
+.profile-container h2 {
+    color: #795757; /* Primary color */
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.profile-container p {
+    color: #3B3030; /* Accent color */
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Edit profile button */
+.profile-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #795757; /* Primary color */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-container button:hover {
+    background-color: #664343; /* Darker shade */
+}
+
+/* Books read section */
+.books-read {
+    margin-top: 30px;
+}
+
+.books-read h3 {
+    color: #795757; /* Primary color */
+    margin-bottom: 20px;
+}
+
+.books-read ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.books-read li {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.books-read li img {
+    width: 50px;
+    height: 75px;
+    margin-right: 15px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.books-read li .book-details {
+    text-align: left;
+}
+
+.books-read li .book-details h4 {
+    color: #3B3030; /* Accent color */
+    margin: 0 0 5px;
+}
+
+.books-read li .book-details p {
+    color: #795757; /* Primary color */
+    margin: 0;
+}
