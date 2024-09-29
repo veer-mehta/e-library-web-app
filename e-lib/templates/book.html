@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Info - E-Library</title>
+    <!-- MDB UI Kit and Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for(endpoint='static', filename='css/book.css')}}">
+</head>
+<body>
+
+<!-- Book Info Section -->
+<div class="container book-info-container">
+    <!-- Book Cover -->
+    <img src="https://via.placeholder.com/300x450" alt="Book Cover" class="book-cover">
+
+    <!-- Book Details -->
+    <div class="book-details">
+        <h1>Book Title</h1>
+        <h4>by Author Name</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.</p>
+        
+        <!-- Book Rating -->
+        <div class="rating">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fas fa-star-half-alt"></i></span>
+            <span><i class="far fa-star"></i></span>
+            <span class="ms-2">(4.5/5)</span>
+        </div>
+
+        <!-- Download Button -->
+        <a href="{{ url_for('download', filename='book.pdf') }}" class="btn btn-download mt-4">
+            <i class="fas fa-download"></i> Download Book
+        </a>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 E-Library. All rights reserved.</p>
+</footer>
+
+<!-- JS Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+</body>
+</html>
