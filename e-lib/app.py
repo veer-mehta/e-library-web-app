@@ -10,7 +10,7 @@ UPLOAD_FOLDER = 'static'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config["SECRET_KEY"] = 'dfsdf'
 
-db = pymysql.connections.Connection(host='localhost', user='root', password='Vam#090905', db='bookslib')
+db = pymysql.connections.Connection(host='localhost', user='root', password='meetu', db='bookslib')
 
 cursor = db.cursor()
 

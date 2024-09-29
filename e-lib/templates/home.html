@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}E-Library Home - Discover Books{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" style="padding-top: 0px;">
+    <h1 style="padding-bottom: 100px; color: beige;">Welcome to E-Library</h1>
+    <p>Discover your next great read. Browse by authors, genres, and trending collections.</p>
+    <a href="#trending-books" class="btn-discover" style="backdrop-filter: blur(500px);">Explore Trending Books</a>
+</section>
+
+<!-- Trending Books Section -->
+<section id="trending-books">
+    <h2 class="section-title">Trending Books</h2>
+    <div class="book-grid">
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" alt="Book Cover">
+            <h4>The Midnight Library</h4>
+            <p>by Matt Haig</p>
+        </div>
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1523475496153-6a45265f6083" alt="Book Cover">
+            <h4>The Silent Patient</h4>
+            <p>by Alex Michaelides</p>
+        </div>
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f" alt="Book Cover">
+            <h4>Where the Crawdads Sing</h4>
+            <p>by Delia Owens</p>
+        </div>
+    </div>
+</section>
+
+<!-- Other sections... -->
+
+{% endblock %}

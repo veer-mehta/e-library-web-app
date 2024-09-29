@@ -6,10 +6,11 @@
     <title>Select Favorite Genres - E-Library</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css">
-    <link rel="stylesheet" href="{{url_for(endpoint='static', filename='css/gsp.css')}}">
+    <link rel="stylesheet" href="{{ url_for(endpoint='static', filename='css/gsp.css') }}">
 </head>
 <body>
 
+<!-- Main Container -->
 <div class="selection-container">
     <h2>Select Your Favorite Genres</h2>
     <p>Select at least 3 to complete your profile.</p>
@@ -29,6 +30,7 @@
             <img src="https://images.unsplash.com/photo-1517732002934-172c357dfb7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" alt="Genre Icon">
             <h4>Romance</h4>
         </div>
+        <!-- Add more genre cards as needed -->
     </div>
 
     <div class="progress-section">
@@ -42,6 +44,6 @@
     <button class="continue-btn" id="completeBtn" onclick="completeProfile()">Complete</button>
 </div>
 
-<script src="{{url_for('static', filename='js/gsp.js')}}"></script>
+<script src="{{ url_for('static', filename='js/gsp.js') }}"></script>
 </body>
 </html>
