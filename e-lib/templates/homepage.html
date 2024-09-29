@@ -175,21 +175,21 @@
         <!-- Search bar -->
         <form class="d-flex me-3">
           <input class="form-control me-2" type="search" placeholder="Search by title, author, or genre" aria-label="Search">
-          <button class="btn btn-outline-light" type="submit" style="margin-right: 200px;">Search</button>
+          <a href="{{ url_for('homepage') }}"><button class="btn btn-outline-light" type="submit" style="margin-right: 200px;">Search</button></a>
         </form>
         
         <!-- User profile and Login/Sign Up buttons -->
         <div class="d-flex align-items-center">
           
           <!-- Login & Sign Up buttons -->
-          <a href="#" class="btn btn-outline-light ms-3">Login</a>
-          <a href="#" class="btn btn-primary ms-2">Sign Up</a>
+          <a href="{{ url_for('login') }}" class="btn btn-outline-light ms-3">Login</a>
+          <a href="{{ url_for('signup') }}" class="btn btn-primary ms-2">Sign Up</a>
         </div>
       </div>
     </div>
 
           <div class="dropdown">
-            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="{{ url_for('userprofile') }}" id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img
                 src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
                 class="rounded-circle"
@@ -209,7 +209,7 @@
   <!-- Hero Section -->
   <section class="hero-section" style="padding-top: 0px;">
     <h1 style="padding-bottom: 100px; color: beige;">Welcome to E-Library</h1>
-    <p >Discover your next great read. Browse by authors, genres, and trending collections.</p>
+    <p>Discover your next great read. Browse by authors, genres, and trending collections.</p>
     <a href="#trending-books" class="btn-discover" style="backdrop-filter: blur(500px);">Explore Trending Books</a>
 </section>
 
