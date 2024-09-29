@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Info - E-Library</title>
-    <!-- MDB UI Kit and Bootstrap -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{url_for(endpoint='static', filename='css/book.css')}}">
-</head>
-<body>
+{% extends 'base.html' %}
 
+{% block title %}Book Info - E-Library{% endblock %}
+
+{% block content %}
 <!-- Book Info Section -->
-<div class="container book-info-container">
+<div class="book-info-container mt-4">
     <!-- Book Cover -->
     <img src="https://via.placeholder.com/300x450" alt="Book Cover" class="book-cover">
 
@@ -38,16 +30,4 @@
         </a>
     </div>
 </div>
-
-<!-- Footer -->
-<footer>
-    <p>&copy; 2024 E-Library. All rights reserved.</p>
-</footer>
-
-<!-- JS Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
-</body>
-</html>
+{% endblock %}
