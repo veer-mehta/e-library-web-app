@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+    <link rel="stylesheet" href="{{url_for(endpoint='static', filename='css/logout.css')}}">
+</head>
+<body>
+
+    <!-- Main Logout Section -->
+    <div class="logout-container">
+        <h1>Goodbye!</h1>
+        <p>Are you sure you want to log out?</p>
+        <button class="btn-logout" onclick="logout()">Logout</button>
+        <button class="btn-cancel" onclick="cancel()">Cancel</button>
+    </div>
+
+    <script>
+        function logout() {
+            // Redirect to the logout action
+            window.location.href = 'login.html';
+        }
+
+        function cancel() {
+            // Redirect to the home page or previous page
+            window.location.href = 'index.html';
+        }
+    </script>
+
+</body>
+</html>
