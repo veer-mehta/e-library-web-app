@@ -1,0 +1,111 @@
+body {
+    background-color: #FFF0D1;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #3B3030;
+}
+
+.navbar .nav-link, .navbar-brand {
+    color: white;
+    margin-right: 20px;
+}
+
+.navbar .nav-link:hover {
+    color: #FFEAB5;
+}
+
+/* Hero Section */
+.hero-section {
+    background-image: url('https://images.unsplash.com/photo-1512820790803-83ca734da794');
+    background-size: cover;
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 3.5em;
+    margin-bottom: 1rem;
+    color: #FFEAB5;
+}
+
+.hero-section p {
+    padding: 3rem;
+    font-size: 1.2em;
+}
+
+.btn-discover {
+    background-color: #795757;
+    color: white;
+    padding: 12px 25px;
+    font-size: 18px;
+    border-radius: 30px;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.btn-discover:hover {
+    background-color: #664343;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 2em;
+    margin: 40px 0 20px;
+    color: #795757;
+    text-align: center;
+}
+
+/* Book Cards */
+.book-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.book-card img {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.book-card h4 {
+    color: #3B3030;
+    margin-bottom: 5px;
+}
+
+.book-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-color: #795757;
+}
+
+/* Book Section Grid */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+}
+
+/* Footer */
+footer {
+    background-color: #3B3030;
+    color: white;
+    padding: 30px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+footer p {
+    margin: 0;
+}

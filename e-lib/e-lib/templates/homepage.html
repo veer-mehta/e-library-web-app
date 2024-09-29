@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library Home - Discover Books</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css">
+    <link rel="stylesheet" href="{{url_for(endpoint='static', filename='css/homepage.css')}}">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3B3030;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{ url_for('homepage') }}">E-Library</a>
+      
+      <!-- Toggle button for small screens -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          <!-- Home link -->
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          
+          <!-- Authors dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="{{ url_for('author') }}" id="authorsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Authors
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="authorsDropdown">
+              <li><a class="dropdown-item" href="#">J.K. Rowling</a></li>
+              <li><a class="dropdown-item" href="#">George Orwell</a></li>
+              <li><a class="dropdown-item" href="#">Agatha Christie</a></li>
+              <li><a class="dropdown-item" href="#">Stephen King</a></li>
+              <li><a class="dropdown-item" href="#">Jane Austen</a></li>
+            </ul>
+          </li>
+          
+          <!-- Genres dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="{{ url_for('genre') }}" id="genresDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Genres
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="genresDropdown">
+              <li><a class="dropdown-item" href="#">Fiction</a></li>
+              <li><a class="dropdown-item" href="#">Mystery</a></li>
+              <li><a class="dropdown-item" href="#">Fantasy</a></li>
+              <li><a class="dropdown-item" href="#">Thriller</a></li>
+              <li><a class="dropdown-item" href="#">Romance</a></li>
+            </ul>
+          </li>
+          
+        </ul>
+        
+        <!-- Search bar -->
+        <form class="d-flex me-3">
+          <input class="form-control me-2" type="search" placeholder="Search by title, author, or genre" aria-label="Search">
+          <a href="{{ url_for('homepage') }}"><button class="btn btn-outline-light" type="submit" style="margin-right: 200px;">Search</button></a>
+        </form>
+        
+        <!-- User profile and Login/Sign Up buttons -->
+        <div class="d-flex align-items-center">
+          
+          <!-- Login & Sign Up buttons -->
+          <a href="{{ url_for('login') }}" class="btn btn-outline-light ms-3">Login</a>
+          <a href="{{ url_for('signup') }}" class="btn btn-primary ms-2">Sign Up</a>
+        </div>
+      </div>
+    </div>
+
+          <div class="dropdown">
+            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="{{ url_for('userprofile') }}" id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img
+                src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                class="rounded-circle"
+                height="30"
+                alt="User Avatar"
+                loading="lazy"
+              />
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+              <li><a class="dropdown-item" href="{{ url_for('userprofile') }}">My Profile</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+          </div>
+  </nav>  
+
+  <!-- Hero Section -->
+  <section class="hero-section" style="padding-top: 0px;">
+    <h1 style="padding-bottom: 100px; color: beige;">Welcome to E-Library</h1>
+    <p>Discover your next great read. Browse by authors, genres, and trending collections.</p>
+    <a href="#trending-books" class="btn-discover" style="backdrop-filter: blur(500px);">Explore Trending Books</a>
+</section>
+
+<!-- Trending Books Section -->
+<section id="trending-books">
+    <h2 class="section-title">Trending Books</h2>
+    <div class="book-grid">
+        <!-- Example Trending Book Card -->
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" alt="Book Cover">
+            <h4>The Midnight Library</h4>
+            <p>by Matt Haig</p>
+        </div>
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1523475496153-6a45265f6083" alt="Book Cover">
+            <h4>The Silent Patient</h4>
+            <p>by Alex Michaelides</p>
+        </div>
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f" alt="Book Cover">
+            <h4>Where the Crawdads Sing</h4>
+            <p>by Delia Owens</p>
+        </div>
+    </div>
+</section>
+
+<!-- Past History Section -->
+<section id="past-history">
+    <h2 class="section-title">Your Reading History</h2>
+    <div class="book-grid">
+        <!-- Example Book from Reading History -->
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853" alt="Book Cover">
+            <h4>1984</h4>
+            <p>by George Orwell</p>
+        </div>
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1523475496153-6a45265f6083" alt="Book Cover">
+            <h4>Pride and Prejudice</h4>
+            <p>by Jane Austen</p>
+        </div>
+    </div>
+</section>
+
+<!-- Collection by Authors Section -->
+<section id="authors-collection">
+    <h2 class="section-title">Books by Your Favorite Authors</h2>
+    <div class="book-grid">
+        <!-- Example Book by Favorite Authors -->
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c" alt="Book Cover">
+            <h4>Harry Potter and the Sorcerer's Stone</h4>
+            <p>by J.K. Rowling</p>
+        </div>
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1586031948293-4ae6f6ae6edb" alt="Book Cover">
+            <h4>Murder on the Orient Express</h4>
+            <p>by Agatha Christie</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 E-Library. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

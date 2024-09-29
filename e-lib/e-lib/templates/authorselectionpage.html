@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Favorite Authors - E-Library</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css">
+    <link rel="stylesheet" href="{{url_for(endpoint='static', filename='css/asp.css')}}">
+</head>
+<body>
+
+<div class="selection-container">
+    <h2>Select Your Favorite Authors</h2>
+    <p>Select at least 3 to proceed to the next step.</p>
+
+    <!-- Grid of Authors -->
+    <div class="grid-container" id="selectionGrid">
+        <!-- Example Author Cards -->
+        <div class="selection-card" onclick="toggleSelect(this)">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Author Photo">
+            <h4>George Orwell</h4>
+        </div>
+        <div class="selection-card" onclick="toggleSelect(this)">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Author Photo">
+            <h4>Agatha Christie</h4>
+        </div>
+        <div class="selection-card" onclick="toggleSelect(this)">
+            <img src="https://randomuser.me/api/portraits/men/15.jpg" alt="Author Photo">
+            <h4>J.K. Rowling</h4>
+        </div>
+    </div>
+
+    <div class="progress-section">
+        <div class="progress-bar">
+            <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        <p id="progressText">0 of 3 selected</p>
+    </div>
+
+    <!-- Continue Button -->
+    <a href="{{ url_for('homepage') }}"><button class="continue-btn" id="continueBtn" onclick="continueToGenres()">Continue</button></a>
+</div>
+
+<footer></footer>
+    <p>&copy; 2024 E-Library. All rights reserved.</p>
+</footer>
+
+<script src="{{url_for('static', filename='js/asp.js')}}">
+</script>
+
+</body>
+</html>

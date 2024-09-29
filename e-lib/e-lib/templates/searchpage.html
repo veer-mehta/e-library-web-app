@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - E-Library</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css">
+    <link rel="stylesheet" href="{{url_for(endpoint='static', filename='css/searchpage.css')}}">
+</head>
+<body>
+
+<!-- Search Bar -->
+<div class="search-bar">
+    <input type="text" placeholder="Search for books, titles, authors, or genres..." id="search-input">
+    <button type="button" onclick="search()">Search</button>
+</div>
+
+<!-- Search Results Heading -->
+<div class="search-results">
+    <h3>Search Results for "<span id="search-query">Book Title</span>"</h3>
+</div>
+
+<!-- Search Results Container -->
+<div class="search-results" id="results-container">
+    <!-- Example Book Card -->
+    <div class="book-card">
+        <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTkzNjF8MHwxfGFsbHwxfHx8fHx8fHwxNjMyOTcyNzg0&ixlib=rb-1.2.1&q=80&w=400" alt="Book Image">
+        <h4>The Great Gatsby</h4>
+        <p>F. Scott Fitzgerald</p>
+    </div>
+
+    <div class="book-card">
+        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTkzNjF8MHwxfGFsbHwyfHx8fHx8fHwxNjMyOTcyNzg0&ixlib=rb-1.2.1&q=80&w=400" alt="Book Image">
+        <h4>To Kill a Mockingbird</h4>
+        <p>Harper Lee</p>
+    </div>
+
+    <div class="book-card">
+        <img src="https://images.unsplash.com/photo-1529400971008-f566de0e6dfc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTkzNjF8MHwxfGFsbHwxfHx8fHx8fHwxNjMyOTcyNzg0&ixlib=rb-1.2.1&q=80&w=400" alt="Book Image">
+        <h4>1984</h4>
+        <p>George Orwell</p>
+    </div>
+
+    <div class="book-card">
+        <img src="https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTkzNjF8MHwxfGFsbHwzfHx8fHx8fHwxNjMyOTcyNzg0&ixlib=rb-1.2.1&q=80&w=400" alt="Book Image">
+        <h4>Brave New World</h4>
+        <p>Aldous Huxley</p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 E-Library. All rights reserved.</p>
+</footer>
+
+<!-- MDB UI Kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+<script src="{{url_for('static', filename='js/searchpage.js')}}"></script>
+</body>
+</html>
