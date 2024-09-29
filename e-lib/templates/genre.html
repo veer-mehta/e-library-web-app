@@ -6,76 +6,7 @@
     <title>Genres</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css">
-    <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #FFF0D1; /* Light background */
-            margin: 0;
-            padding: 0;
-        }
-
-       /* Navbar */
-       .navbar {
-            background-color: #3B3030;
-        }
-
-        .navbar .nav-link, .navbar-brand {
-            color: white;
-            margin-right: 20px;
-        }
-
-        .navbar .nav-link:hover {
-            color: #FFEAB5;
-        }
-
-
-        /* Main Container */
-        .container {
-            padding: 40px;
-        }
-
-        h1 {
-            color: #3B3030;
-            font-size: 36px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        /* Genre Cards */
-        .genre-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 20px;
-        }
-
-        .genre-card {
-            background-color: #795757; /* Matching the theme */
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 30%;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .genre-card:hover {
-            transform: scale(1.05);
-            background-color: #664343; /* Change color on hover */
-        }
-
-        h3 {
-            margin: 0;
-            font-size: 22px;
-        }
-
-        p {
-            margin: 10px 0 0;
-            font-size: 16px;
-            color: #ffeab5; /* Light text for description */
-        }
-    </style>
+    <link rel="stylesheet" href="{{url_for(endpoint='static', filename='css/genre.css')}}">
 </head>
 <body>
         <!-- Navbar -->
@@ -116,17 +47,22 @@
             <a class="nav-link dropdown-toggle" href="#" id="genresDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Genres
             </a>
-            <ul class="dropdown-menu" aria-labelledby="genresDropdown">
-              <li><a class="dropdown-item" href="#">Fiction</a></li>
+            <ul class="dropdown-menu" aria-labelledby="genresDropdown"></ul>
+              <li><a class="dropdown-item" href="#">Fiction and Literature</a></li>
               <li><a class="dropdown-item" href="#">Mystery</a></li>
               <li><a class="dropdown-item" href="#">Fantasy</a></li>
               <li><a class="dropdown-item" href="#">Thriller</a></li>
               <li><a class="dropdown-item" href="#">Romance</a></li>
+              <li><a class="dropdown-item" href="#">Non fiction</a></li>
+              <li><a class="dropdown-item" href="#">Nature</a></li>
+              <li><a class="dropdown-item" href="#">Art</a></li>
+              <li><a class="dropdown-item" href="#">African-American Studies</a></li>
+              <li><a class="dropdown-item" href="#">Classic</a></li>
+              <li><a class="dropdown-item" href="#">Adventure</a></li>
             </ul>
           </li>
           
         </ul>
-        
         <!-- Search bar -->
         <form class="d-flex me-3">
           <input class="form-control me-2" type="search" placeholder="Search by title, author, or genre" aria-label="Search">
