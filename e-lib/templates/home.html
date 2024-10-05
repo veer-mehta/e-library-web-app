@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Hero Section -->
+  <section class="hero-section" style="padding-top: 0px;">
+    <h1 style="padding-bottom: 100px; color: beige;">Welcome to E-Library</h1>
+    <p >Discover your next great read. Browse by authors, genres, and trending collections.</p>
+    <a href="#trending-books" class="btn-discover" style="backdrop-filter: blur(500px);">Explore Trending Books</a>
+</section>
+
+<!-- Trending Books Section -->
+<section id="trending-books">
+    <h2 class="section-title">Trending Books</h2>
+    <div class="book-grid">
+        <!-- Example Trending Book Card -->
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" alt="Book Cover">
+            <h4>The Midnight Library</h4>
+            <p>by Matt Haig</p>
+        </div>
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1523475496153-6a45265f6083" alt="Book Cover">
+            <h4>The Silent Patient</h4>
+            <p>by Alex Michaelides</p>
+        </div>
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f" alt="Book Cover">
+            <h4>Where the Crawdads Sing</h4>
+            <p>by Delia Owens</p>
+        </div>
+    </div>
+</section>
+
+<!-- Past History Section -->
+<section id="past-history">
+    <h2 class="section-title">Your Reading History</h2>
+    <div class="book-grid">
+        <!-- Example Book from Reading History -->
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853" alt="Book Cover">
+            <h4>1984</h4>
+            <p>by George Orwell</p>
+        </div>
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1523475496153-6a45265f6083" alt="Book Cover">
+            <h4>Pride and Prejudice</h4>
+            <p>by Jane Austen</p>
+        </div>
+    </div>
+</section>
+
+<!-- Collection by Authors Section -->
+<section id="authors-collection">
+    <h2 class="section-title">Books by Your Favorite Authors</h2>
+    <div class="book-grid">
+        <!-- Example Book by Favorite Authors -->
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c" alt="Book Cover">
+            <h4>Harry Potter and the Sorcerer's Stone</h4>
+            <p>by J.K. Rowling</p>
+        </div>
+        <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1586031948293-4ae6f6ae6edb" alt="Book Cover">
+            <h4>Murder on the Orient Express</h4>
+            <p>by Agatha Christie</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
