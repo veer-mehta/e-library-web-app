@@ -1,174 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results - E-Library</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css">
-    <link rel="stylesheet" href="{{url_for(endpoint='static', filename='css/searchpage.css')}}">
-    <style>
-        body {
-            background-color: #FFF0D1;
-        }
+{% extends "base.html" %}
+{% block content %}
 
-        .search-bar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 50px;
-            padding: 20px;
-        }
-
-        .search-bar input {
-            width: 300px;
-            margin-bottom: 15px;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .search-bar button {
-            background-color: #795757;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .search-bar button:hover {
-            background-color: #664343;
-        }
-
-        /* Search Results */
-        .search-results {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        #results-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .book-card {
-            background-color: white;
-            padding: 20px;
-            margin: 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            width: 200px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .book-card:hover {
-            transform: scale(1.05);
-        }
-
-        .book-card img {
-            max-width: 100%;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .book-card h4 {
-            margin-bottom: 5px;
-            color: #795757;
-        }
-
-        .book-card p {
-            color: #664343;
-        }
-
-        footer {
-            background-color: #3B3030;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            margin-top: 50px;
-        }
-    </style>
-</head>
 <body>
 
 <!-- Search Bar Section -->
 <div class="search-bar">
     <h3>Search for Books</h3>
-    <input type="text" id="book-title" placeholder="Book Title">
-    <input type="text" id="author-name" placeholder="Author">
-    <input type="text" id="book-genre" placeholder="Genre">
-    <button type="button" onclick="searchBooks()">Search</button>
+	<form action="{{ url_for('searchpage') }}" method="post">
+		<input type="text" name="book_name" placeholder="Book Title">
+		<input type="text" name="author_name" placeholder="Author">
+		<input type="text" name="genre_name" placeholder="Genre">
+		<button type="submit">Search</button>
+	</form>
 </div>
 
-<!-- Search Results Section -->
-<div class="search-results">
-    <h3>Search Results for "<span id="search-query">Your Search</span>"</h3>
-</div>
+	{% if searched %}
+	<!-- Search Results Section -->
+	<div class="search-results">
+		<h3>Search results for <br>
+			{% if qry[0] %} Book: {{qry[0]}} {% endif %}<br>
+			{% if qry[1] %} Author: {{qry[1]}} {% endif %}<br>
+			{% if qry[2] %} Genre: {{qry[2]}} {% endif %}
+		</h3>
+	</div>
+	<!-- Search Results Container -->
+	<div class="book-grid">
+		<!-- Book Cards (Example Results) -->
+		{% for x in res_books %}
+		<!-- Book Cards (Example Results) -->
+		<a href="{{ url_for('book', book_id=x[0]) }}">
+			<div class="book-card">
+				<img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTkzNjF8MHwxfGFsbHwxfHx8fHx8fHwxNjMyOTcyNzg0&ixlib=rb-1.2.1&q=80&w=400" alt="Book Image">
+				<h4>{{ x[1] }}</h4>
+				<p>{{ x[2] }}<br>{{ x[3] }}</p>
 
-<!-- Search Results Container -->
-<div class="search-results" id="results-container">
-    <!-- Book Cards (Example Results) -->
-    <a href="{{ url_for('book') }}">
-        <div class="book-card">
-            <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTkzNjF8MHwxfGFsbHwxfHx8fHx8fHwxNjMyOTcyNzg0&ixlib=rb-1.2.1&q=80&w=400" alt="Book Image">
-            <h4>The Great Gatsby</h4>
-            <p>F. Scott Fitzgerald</p>
-        </div>
-    </a>
+			</div>
+		</a>
+		{% endfor %}
+	</div>
 
-    <a href="{{ url_for('book') }}">
-        <div class="book-card">
-            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTkzNjF8MHwxfGFsbHwyfHx8fHx8fHwxNjMyOTcyNzg0&ixlib=rb-1.2.1&q=80&w=400" alt="Book Image">
-            <h4>To Kill a Mockingbird</h4>
-            <p>Harper Lee</p>
-        </div>
-    </a> 
+	{% else %}
+	<!-- Search Results Section -->
+	<div class="search-results">
+		<h3>New Releases</h3>
+	</div>
+	<!-- Search Results Container -->
+	<div class="book-grid">
+		{% for x in new_books %}
+		<!-- Book Cards (Example Results) -->
+		<a href="{{ url_for('book', book_id=x[0]) }}">
+			<div class="book-card">
+				<img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTkzNjF8MHwxfGFsbHwxfHx8fHx8fHwxNjMyOTcyNzg0&ixlib=rb-1.2.1&q=80&w=400" alt="Book Image">
+				<h4>{{ x[1] }}</h4>
+				<p>{{ x[2] }}<br>{{ x[3] }}</p>
 
-    <a href="{{ url_for('book') }}">
-        <div class="book-card">
-            <img src="https://images.unsplash.com/photo-1529400971008-f566de0e6dfc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTkzNjF8MHwxfGFsbHwxfHx8fHx8fHwxNjMyOTcyNzg0&ixlib=rb-1.2.1&q=80&w=400" alt="Book Image">
-            <h4>1984</h4>
-            <p>George Orwell</p>
-        </div>
-    </a>
+			</div>
+		</a>
+		{% endfor %}
+	</div>
 
-    <a href="{{ url_for('book') }}">
-        <div class="book-card">
-            <img src="https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTkzNjF8MHwxfGFsbHwzfHx8fHx8fHwxNjMyOTcyNzg0&ixlib=rb-1.2.1&q=80&w=400" alt="Book Image">
-            <h4>Brave New World</h4>
-            <p>Aldous Huxley</p>
-        </div>
-    </a>
-</div>
-
-<footer>
-    <p>&copy; 2024 E-Library. All rights reserved.</p>
-</footer>
-
-<!-- MDB UI Kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
-<script src="{{url_for('static', filename='js/searchpage.js')}}"></script>
-
-<script>
-    function searchBooks() {
-        const title = document.getElementById('book-title').value;
-        const author = document.getElementById('author-name').value;
-        const genre = document.getElementById('book-genre').value;
-
-        // Example of combining user inputs into a search query
-        const query = ${title} ${author} ${genre};
-        document.getElementById('search-query').innerText = query.trim() || 'Your Search';
-
-        // TODO: Call backend search API with user inputs and update search results dynamically
-        console.log("Searching for:", { title, author, genre });
-    }
-</script>
+	{% endif %}
 
 </body>
-</html>
+
+{% endblock %}

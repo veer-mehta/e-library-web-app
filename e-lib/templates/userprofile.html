@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile - E-Library</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css">
-    <link rel="stylesheet" href="{{url_for(endpoint='static', filename='css/userprofile.css')}}">
-</head>
+{% extends 'base.html' %}
+{% block content %}
 <body>
 
 <div class="profile-container">
@@ -19,14 +11,16 @@
     <div class="books-read">
         <h3>Books Uploaded</h3>
         <ul>
-			{% for rec in books_uploaded %}
+			{% for x in books_uploaded %}
             <li>
-                <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTkzNjF8MHwxfGFsbHwxfHx8fHx8fHwxNjMyOTcyNzg0&ixlib=rb-1.2.1&q=80&w=400" alt="Book Image">
-                <div class="book-details">
-                    <h4>{{ rec[0] }}</h4>
-                    <p>{{ rec[1] }}</p>
-					<p>{{ rec[2] }}</p>
-                </div>
+				<a href="{{ url_for('book', book_id=x[0]) }}">
+					<img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTkzNjF8MHwxfGFsbHwxfHx8fHx8fHwxNjMyOTcyNzg0&ixlib=rb-1.2.1&q=80&w=400" alt="Book Image">
+					<div class="book-details">
+						<h4>{{ x[1] }}</h4>
+						<p>{{ x[2] }}</p>
+						<p>{{ x[3] }}</p>
+					</div>
+				</a>
             </li>
 			{% endfor %}
         </ul>
@@ -36,4 +30,5 @@
 <!-- MDB UI Kit -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 </body>
-</html>
+
+{% endblock %}

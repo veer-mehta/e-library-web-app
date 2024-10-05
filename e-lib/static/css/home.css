@@ -109,3 +109,35 @@ footer {
 footer p {
     margin: 0;
 }
+
+.upload-form {
+	background-color: white;
+	border-radius: 15px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	padding: 30px;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.form-control {
+	margin-bottom: 20px;
+}
+
+.btn-upload {
+	background-color: #795757;
+	color: white;
+	padding: 12px 25px;
+	font-size: 18px;
+	border-radius: 30px;
+}
+
+.form-title {
+	font-size: 2em;
+	color: #3B3030;
+	margin-bottom: 20px;
+}
+
+.form-section {
+	padding: 40px 20px;
+	text-align: center;
+}

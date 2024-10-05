@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Info - E-Library{% endblock %}
+
+{% block content %}
+<!-- Book Info Section -->
+<div class="book-info-container mt-4">
+    <!-- Book Cover -->
+    <img src="https://via.placeholder.com/300x450" alt="Book Cover" class="book-cover">
+
+    <!-- Book Details -->
+    <div class="book-details">
+        <h1>{{ book_data[0] }}</h1>
+        <h4>by {{ book_data[1] }}<br>{{ book_data[2] }}</h4>
+
+        <p>{{ book_data[3] }}</p>
+        
+        <!-- Book Rating -->
+        <div class="rating">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fas fa-star-half-alt"></i></span>
+            <span><i class="far fa-star"></i></span>
+            <span class="ms-2">(4.5/5)</span>
+        </div>
+
+        <!-- Download Button -->
+        <a href="{{ book_data[4] }}" class="btn btn-download mt-4">
+            <i class="fas fa-download"></i> Download Book
+        </a>
+    </div>
+</div>
+{% endblock %}

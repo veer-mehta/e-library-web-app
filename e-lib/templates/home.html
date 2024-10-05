@@ -1,11 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
+
+<body>
 <!-- Hero Section -->
   <section class="hero-section" style="padding-top: 0px;">
     <h1 style="padding-bottom: 100px; color: beige;">Welcome to E-Library</h1>
     <p >Discover your next great read. Browse by authors, genres, and trending collections.</p>
     <a href="#trending-books" class="btn-discover" style="backdrop-filter: blur(500px);">Explore Trending Books</a>
 </section>
+
+<div class="search-results">
+	<h3>New Releases</h3>
+</div>
+<!-- Search Results Container -->
+<div class="book-grid">
+	{% for x in new_books %}
+	<!-- Book Cards (Example Results) -->
+	<a href="{{ url_for('book', book_id=x[0]) }}">
+		<div class="book-card">
+			<img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTkzNjF8MHwxfGFsbHwxfHx8fHx8fHwxNjMyOTcyNzg0&ixlib=rb-1.2.1&q=80&w=400" alt="Book Image">
+			<h4>{{ x[1] }}</h4>
+			<p>{{ x[2] }}<br>{{ x[3] }}</p>
+
+		</div>
+	</a>
+	{% endfor %}
+</div>
+
+
+
 
 <!-- Trending Books Section -->
 <section id="trending-books">
@@ -65,5 +88,5 @@
         </div>
     </div>
 </section>
-
+</body>
 {% endblock %}

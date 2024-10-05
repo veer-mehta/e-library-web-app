@@ -10,11 +10,10 @@
 </head>
 <body>
 
-{% if not exclude_navbar %}
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3B3030;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">E-Library</a>
+      <a class="navbar-brand" href="{{ url_for('home') }}">E-Library</a>
       
       <!-- Toggle button for small screens -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,9 +23,6 @@
       <!-- Navbar links -->
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
-          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="authorsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Authors
@@ -48,21 +44,16 @@
             </ul>
           </li>
         </ul>
-        
-        <!-- Search bar -->
-        <form class="d-flex me-3">
-          <input class="form-control me-2" type="search" placeholder="Search by title, author, or genre" aria-label="Search">
-          <a href="{{ url_for('searchpage') }}"><button class="btn btn-outline-light" type="submit">Search</button></a>
-        </form>
 
         <!-- User profile and Login/Sign Up buttons -->
         <div class="d-flex align-items-center">
+		  <a href="{{ url_for('searchpage') }}" class="btn btn-outline-light ms-3" type="submit">Search</a>
 		{% if g.user == 0 %}
           <a href="{{ url_for('login') }}" class="btn btn-outline-light ms-3">Login</a>
           <a href="{{ url_for('signup') }}" class="btn btn-outline-light ms-3">Sign Up</a>
 		{% else %}
-		  Hi {{ g.user[1] }}
 		  <a href="{{ url_for('upload') }}" class="btn btn-outline-light ms-3">Upload Books</a>
+		  &nbsp; Hi {{ g.user[1] }}
 		{% endif %}
 
 
@@ -70,11 +61,11 @@
       </div>
     </div>
   </nav>  
-{% endif %}
 
 <!-- Main Content -->
 <div class="container">
-    {% block content %}{% endblock %}
+    {% block content %}
+	{% endblock %}
 </div>
 
 {% if not exclude_footer %}
@@ -84,5 +75,6 @@
 </footer>
 {% endif %}
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 </body>
 </html>
