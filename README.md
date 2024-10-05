@@ -1,7 +1,7 @@
 Requires:
   Python <= 3.10
-  MySQL Client
-  `pip install flask mega.py pymysql crypotography`
+  Postgres Client
+  `pip install flask mega.py psycopg2`
 
 To run:
   Go inside the e-lib folder then,
