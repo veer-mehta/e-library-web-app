@@ -1,9 +1,8 @@
-A simple Online Library Web App made with Python's Flask framework, with PostgreSQL.
-Requires:
-  Python <= 3.10    (due to mega.py)
-  Postgres Client
-  `pip install flask mega.py psycopg2`
+Requires:<br>
+  Python <= 3.10    (due to mega.py)<br>
+  Postgres Client<br>
+  `pip install flask mega.py psycopg2`<br>
 
-To run:
-  Go inside the e-lib folder then,
+To run:<br>
+  Go inside the e-lib folder then,<br>
   `flask run`
