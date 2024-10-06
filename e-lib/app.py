@@ -1,20 +1,32 @@
-from flask import Flask, render_template, request, redirect, url_for, g, session
+from flask import Flask, render_template, request, redirect, url_for, g, session, send_file
 from werkzeug.utils import secure_filename
-from fuzzywuzzy import process  # Fuzzy matching
 from mega import Mega
 import os, psycopg2, functools
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = 'static'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config["SECRET_KEY"] = 'dfsdf'
+TEMP_FOLDER = 'temp_files'
+app.config['TEMP_FOLDER'] = TEMP_FOLDER
+app.config["SECRET_KEY"] = 'dfsvdsvvdsdf'
 
-mega = Mega()
-mega = mega.login('veeramehta09@gmail.com', 'vam#090905')
+mega = Mega().login('veeramehta09@gmail.com', 'vam#090905')
 
-def write(s):
+
+global con 
+con = psycopg2.connect(host='localhost', user='postgres', password='veer', port='5432', database='bookslib')
+global cursor
+cursor = con.cursor()
+
+
+def write(s):											#for debugging...
 	open('abc.txt', 'a').write(str(s)+'\n')
+
+
+def open_db():
+	con = psycopg2.connect(host='localhost', user='postgres', password='veer', port='5432', database='bookslib')
+	cursor = con.cursor()
+
+	return (con, cursor)
 
 
 def close_db(con, cursor):
@@ -23,11 +35,9 @@ def close_db(con, cursor):
 	con.close()
 
 
-def open_db(isinit=True):
-	con = psycopg2.connect(host='localhost', user='postgres', password='veer', port='5432', database='bookslib')
-	cursor = con.cursor()
-
-	if isinit:
+def init_db():
+		con = session['con']
+		cursor = session['cur']
 		cursor.execute("""
 			CREATE TABLE IF NOT EXISTS users (
 			user_id SERIAL PRIMARY KEY,
@@ -37,7 +47,6 @@ def open_db(isinit=True):
 		);
 		""")
 
-
 		cursor.execute("""
 			CREATE TABLE IF NOT EXISTS authors (
 			author_id SERIAL PRIMARY KEY,
@@ -45,14 +54,12 @@ def open_db(isinit=True):
 		);
 		""")
 
-
 		cursor.execute("""
 			CREATE TABLE IF NOT EXISTS genres (
 			genre_id SERIAL PRIMARY KEY,
 			genre_name VARCHAR(100) NOT NULL
 		);
 		""")
-
 
 		cursor.execute("""
 			CREATE TABLE IF NOT EXISTS books (
@@ -65,11 +72,10 @@ def open_db(isinit=True):
 			description TEXT
 		);
 		""")
+		con.commit()
 
-		return (con, cursor)
 
-
-def get_new_uploads(con, cursor):
+def get_new_uploads():
 	cursor.execute(f"""
 	SELECT 
 		books.book_id,
@@ -100,34 +106,32 @@ def login_required(view):
 
 
 @app.before_request
-def load_logged_in_user():
+def before_request():
 	if 'id' in session:
-		open('abc.txt', 'a').write(str(session))
 		user_id = session['id']
 		con, cursor = open_db()
-		cursor.execute("SELECT * FROM users WHERE user_id = %s", (user_id,))
+		cursor.execute(f"SELECT * FROM users WHERE user_id = '{user_id}'")
 		g.user = cursor.fetchone()
 		close_db(con, cursor)
 	else:
 		g.user = 0
+	con = psycopg2.connect(host='localhost', user='postgres', password='veer', port='5432', database='bookslib')
+	cursor = con.cursor()
 
 
 @app.route('/', methods=["GET"])											#HOME
 def home():
-	con, cursor = open_db()
-	new_books = get_new_uploads(con, cursor)
-	close_db(con, cursor)
+	new_books = get_new_uploads()
 	return render_template('home.html', new_books=new_books)
 
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
-	con, cursor = open_db()
 	if request.method == "POST":
 		email = request.form['email']
 		pswd = request.form['password']
 		
-		cursor.execute("SELECT * FROM users WHERE email = %s AND password = %s", (email, pswd))
+		cursor.execute(f"SELECT * FROM users WHERE email = '{email}' AND password = '{pswd}'")
 		user = cursor.fetchone()
 		if user:
 			session['id'] = user[0]  # Store user_id in session
@@ -142,20 +146,17 @@ def login():
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
 	if request.method == "POST":
-		con, cursor = open_db()
 		name = request.form['username']
 		email = request.form['email']
 		pswd = request.form['password']
 
-		cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
+		cursor.execute(f"SELECT * FROM users WHERE email = '{email}")
 		if cursor.fetchone():
 			return redirect(url_for('login'))
 		else:
-			cursor.execute("INSERT INTO users (user_name, email, password) VALUES (%s, %s, %s)", (name, email, pswd))
-			cursor.execute("SELECT user_id FROM users WHERE email = %s", (email,))
+			cursor.execute(f"INSERT INTO users (user_name, email, password) VALUES ('{name}', '{email}', '{pswd}')")
+			cursor.execute(f"SELECT user_id FROM users WHERE email = '{email}'")
 			session['id'] = cursor.fetchone()[0]
-
-			close_db(con, cursor)
 
 			return redirect(url_for('authorselectionpage'))
 	
@@ -164,7 +165,6 @@ def signup():
 
 @app.route('/disp')
 def disp():
-	con, cursor = open_db()
 	cursor.execute(f"""
 	SELECT 
 		*
@@ -177,17 +177,15 @@ def disp():
 @app.route('/upload', methods=['GET', 'POST'])								#UPLOAD
 def upload():
 	if request.method == 'POST':
-		con, cursor = open_db()
-
 		file = request.files['file']
 		book_name = request.form['book_name']
 		author = request.form['author']
 		genre = request.form['genre']
-		descrpiton = request.form['descrpition']
+		descrpiton = request.form.get('descrpition')
 
 		if file.filename:
 			filename = secure_filename(file.filename)
-			file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+			file_path = os.path.join(app.config['TEMP_FOLDER'], filename)
 			file.save(file_path)
 			mega_file = mega.upload(file_path)
 			link = mega.get_upload_link(mega_file)
@@ -211,8 +209,7 @@ def upload():
 				cursor.execute(f"select genre_id from genres where genre_name = '{genre}'")
 				genre_id = cursor.fetchall()[0]
 			cursor.execute(f"insert into books (book_name, author_id, uploader_id, genre_id, link, description) values ('{book_name}', {author_id[0]}, {session['id']}, {genre_id[0]}, '{link}', '{descrpiton}')")
-
-			close_db(con, cursor)
+			con.commit()
 			return redirect(url_for('home'))
 
 	return render_template('upload.html')
@@ -244,7 +241,6 @@ def userprofile():
 		books.uploader_id = {g.user[0]};
 	""")
 	bu = cursor.fetchall()
-	close_db(con, cursor)
 	return render_template('userprofile.html', books_uploaded=bu[:5])
 
 
@@ -277,16 +273,16 @@ def searchpage():
 		res_books = cursor.fetchall()
 		write(res_books)
 
-		new_books = get_new_uploads(con, cursor)
+		new_books = get_new_uploads()
 
 		return render_template('searchpage.html', qry=qry, res_books=res_books, searched=True, new_books=new_books)
 
-	new_books = get_new_uploads(con, cursor)
+	new_books = get_new_uploads()
 
 	return render_template('searchpage.html', new_books=new_books)
 
 
-@app.route('/book/<book_id>')
+@app.route('/book/<book_id>', methods = ["GET", "POST"])
 def book(book_id):
 	con, cursor = open_db()
 	cursor.execute(f"""
@@ -304,8 +300,16 @@ def book(book_id):
 		genres ON books.genre_id = genres.genre_id
 	WHERE
 		books.book_id = '{book_id}'
-""")
+	""")
 	book_data = cursor.fetchone()
+	write(book_data)
+	
+	if request.method == "POST":
+		file = mega.download_url(book_data[4], TEMP_FOLDER)
+		write(file)
+		return send_file(file)
+
+
 	return render_template('book.html', book_data = book_data)
 
 
